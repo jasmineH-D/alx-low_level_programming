@@ -5,7 +5,7 @@
  * @y: The second number
  * Return: The result os multiplication
  */
-int mul(int a, int b)
+int mul(int x, int y)
 {
         return (x * y);
 }
