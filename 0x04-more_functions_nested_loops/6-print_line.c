@@ -4,7 +4,7 @@
  * @n: input number
  * Return: staight line
  */
-void print_line(int n);
+void print_line(int n)
 {
 int y;
 
