@@ -9,9 +9,9 @@ void puts_half(char *str)
 {
 	int u, f, y;
 
-	longi = 0;
+	y = 0;
 
-	for (u = 0; str[a] != '\0'; u++)
+	for (u = 0; str[u] != '\0'; u++)
 		y++;
 
 	f = (y / 2);
