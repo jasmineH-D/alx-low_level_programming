@@ -19,3 +19,5 @@ void print_rev(char *s)
 	for (u = y; u > 0; u--)
 	{
 		_putchar(*s);
+	}
+}
