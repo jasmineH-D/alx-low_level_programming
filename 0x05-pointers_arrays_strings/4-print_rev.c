@@ -3,7 +3,7 @@
 /**
  * print_rev -  prints a string
  * @s: string
- * Return: Always 0.
+ * Return: 0
  */
 void print_rev(char *s)
 {
