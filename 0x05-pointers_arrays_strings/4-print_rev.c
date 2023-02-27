@@ -1,9 +1,8 @@
 #include "main.h"
-
 /**
- * print_rev -  prints a string
+ * print_rev - prints a string
  * @s: string
- * Return: 0
+ * return: 0
  */
 void print_rev(char *s)
 {
@@ -19,5 +18,8 @@ void print_rev(char *s)
 	for (u = y; u > 0; u--)
 	{
 		_putchar(*s);
+		s--;
 	}
+
+	_putchar('\n');
 }
