@@ -1,29 +1,19 @@
 #include "main.h"
 /**
- * _strcat - concatenates two strings
- * @dest: input value
- * @src: input value
+ * _islower - check if an input is lower char or not
+ * @c: an integer input
  *
- * Return: string @dest
+ * Return: 1 if c is lower char, 0 otherwise
  */
-char *_strcat(char *dest, char *src)
+int _islower(int c)
 {
-	int y;
-	int a;
+	int i;
 
-	y = 0;
-	while (dest[y] != '\0')
+	for (i = 97; i <= 122; i++)
 	{
-		y++;
-	}
-	a = 0;
-	while (src[a] != '\0')
-	{
-		dest[y] = src[a];
-		y++;
-		a++;
+		if (i == c)
+			return (1);
 	}
 
-	dest[y] = '\0';
-	return (dest);
+	return (0);
 }
