@@ -1,5 +1,7 @@
 #include <stddef.h>
+
 #include <math.h>
+
 #include "main.h"
 /**
  * binary_to_uint - converts abinary.
@@ -20,6 +22,7 @@ while (y >= 0)
 {
 if (b[y] != '0' && b[y] != '1')
 return (0);
+
 out_put += (b[y] - '0') * pow(2, h);
 y--;
 h++;
