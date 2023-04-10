@@ -10,3 +10,4 @@ int get_endianness(void)
 	char *t = (char *) &y;
 
 	return (*t);
+}
