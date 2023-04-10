@@ -1,6 +1,7 @@
 #include "main.h"
 /**
  * get_bit - returns the value of a bit at an index in a decimal number
+ *
  * @n: the unsigned long int to retrieve the bit from
  * @index: the index of bit ,starting from 0.
  *
