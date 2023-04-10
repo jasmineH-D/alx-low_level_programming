@@ -11,21 +11,26 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-if (b == NULL)
-return (0);
+	unsigned int n = 0;
+	int i = 0;
 
-int len = strlen(b);
-unsigned int out_put = 0;
-int y = len - 1, h = 0;
+	if (b == NULL)
+		return (0);
 
-while (y >= 0)
-{
-if (b[y] != '0' && b[y] != '1')
-return (0);
-
-out_put += (b[y] - '0') * pow(2, h);
-y--;
-h++;
-}
-return (out_put);
+	while (b[i] != '\0)
+	{
+		if (b[i] == '0')
+		{
+			n = n * 2;
+		}
+		else if (b[i] == '1')
+		{
+			n = n * 2 + 1;
+		}
+		else {
+			return (0);
+		}
+		i++;
+		}
+	return (n);
 }
