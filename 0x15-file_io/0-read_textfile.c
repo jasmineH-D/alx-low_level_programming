@@ -27,17 +27,13 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	numb = read(fd, buf, letters);
 	if (numb < 0)
-	{
 		free(buf);
 		return (0);
-	}
 
 	numb = write(STDOUT_FILENO, buf, numb);
 	if (numb == -1 || numb != letters)
-	{
 		free(buf);
 		return (0);
-	}
 
 	free(buf);
 	close(fd);
