@@ -1,7 +1,5 @@
 #include <stddef.h>
-
 #include <math.h>
-
 #include "main.h"
 /**
  * binary_to_uint - converts abinary.
