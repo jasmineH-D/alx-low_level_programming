@@ -1,42 +1,28 @@
-#include "main.h"
-#include <stdlib.h>
+#include "shell.h"
 
 /**
- * read_textfile - Reads a text file and prints it to the POSIX standard output
- *
- * @filename: Name of the file to read
- * @letters: Number of letters to read and print
- *
- * Return: Number of letters read and printed, or 0 if an error occurred
+ * append_text_to_file - appand a text to the end of file
+ * @filename: filename
+ * @text_content: text content of the file
+ * Return: 1 or -1
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+int append_text_to_file(const char *filename, char *text_content)
 {
-	ssize_t numb;
-	char *buf;
-	int fd;
+	int fd, len, w;
 
-	if (!filename)
-		return (0);
-
-	buf = malloc(sizeof(char) * letters);
-	if (!buf)
-		return (0);
-
-	fd = open(filename, O_RDONLY);
+	if (filename == NULL)
+		return (-1);
+	fd = open(filename, O_APPEND | O_WRONLY);
 	if (fd == -1)
-		return (0);
-
-	numb = read(fd, buf, letters);
-	if (numb < 0)
-		free(buf);
-		return (0);
-
-	numb = write(STDOUT_FILENO, buf, numb);
-	if (numb == -1 || numb != letters)
-		free(buf);
-		return (0);
-
-	free(buf);
+		return (-1);
+	if (text_content != NULL)
+	{
+		for (len = 0; text_content[len] != '\0'; len++)
+		;
+		w = write(fd, text_content, len);
+		if (w == -1)
+			return (-1);
+	}
 	close(fd);
-	return (numb);
+	return (1);
 }
