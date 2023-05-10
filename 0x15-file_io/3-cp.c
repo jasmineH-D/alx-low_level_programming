@@ -18,7 +18,7 @@ void error_from(char *str)
 
 void error_too(char *str)
 {
-	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", str);
+	dprintf(STDERR_FILENO, "Error: Can't write from file %s\n", str);
 	exit(99);
 }
 
