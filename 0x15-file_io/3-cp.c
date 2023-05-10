@@ -18,7 +18,7 @@ void error_from(char *str)
 
 void error_too(char *str)
 {
-	dprintf(STDERR_FILENO, "Error: Can't write from file %s\n", str);
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", str);
 	exit(99);
 }
 
@@ -31,7 +31,8 @@ void error_too(char *str)
 
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_too, rd, wt;
+	int fd_from, fd_too;
+	ssize_t rd, wt;
 	int loop_buff;
 	char string[1024];
 
@@ -59,12 +60,12 @@ int main(int argc, char *argv[])
 	}
 	if (close(fd_from) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
 	if (close(fd_too) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd_too);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_too);
 		exit(100);
 	}
 	return (0);
