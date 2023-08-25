@@ -1,4 +1,6 @@
-all: $(SRC)
+.PHONY = all
 CC = gcc
-SRC = main.c school.c
+SRC := main.c school.c
+
+all: $(SRC)
 		$(CC) $(SRC) -o school
