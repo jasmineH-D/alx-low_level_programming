@@ -1,70 +1,88 @@
 #include "search_algos.h"
 
 /**
-  * _binary_search - Searches for a value in a sorted array
-  *                  of integers using binary search.
-  * @array: A pointer to the first element of the array to search.
-  * @left: The starting index of the [sub]array to search.
-  * @right: The ending index of the [sub]array to search.
-  * @value: The value to search for.
-  *
-  * Return: If the value is not present or the array is NULL, -1.
-  *         Otherwise, the index where the value is located.
-  *
-  * Description: Prints the [sub]array being searched after each change.
-  */
-int _binary_search(int *array, size_t left, size_t right, int value)
+ * exponential_search - function that searches for a value in a sorted
+ * array of integers using the Exponential search algorithm
+ * @array: pointer to the first element of the array to search in.
+ * @size: the number of elements in array.
+ * @value: the value to search for.
+ *
+ * Return: ndex of value or -1 if not found..
+ */
+int exponential_search(int *array, size_t size, int value)
 {
-	size_t i;
+	size_t low = 1, high = 2;
 
-	if (array == NULL)
+	if (!array || !size)
 		return (-1);
-
-	while (right >= left)
+	if (size < 2)
 	{
-		printf("Searching in array: ");
-		for (i = left; i < right; i++)
-			printf("%d, ", array[i]);
-		printf("%d\n", array[i]);
-
-		i = left + (right - left) / 2;
-		if (array[i] == value)
-			return (i);
-		if (array[i] > value)
-			right = i - 1;
-		else
-			left = i + 1;
+		low = 0;
+		high = 1;
 	}
-
-	return (-1);
+	else
+	{
+		while (low < size)
+		{
+			printf("Value checked array[%lu] = [%d]\n", low, array[low]);
+			if (
+				((array[low] <= value) && (array[high] >= value)) || ((low * 2) >= size))
+				break;
+			low *= 2;
+			high = high * 2 < size ? high * 2 : size - 1;
+		}
+	}
+	printf("Value found between indexes [%lu] and [%lu]\n", low, high);
+	return (binary_search_index(array, low, high, value));
 }
 
 /**
-  * exponential_search - Searches for a value in a sorted array
-  *                      of integers using exponential search.
-  * @array: A pointer to the first element of the array to search.
-  * @size: The number of elements in the array.
-  * @value: The value to search for.
-  *
-  * Return: If the value is not present or the array is NULL, -1.
-  *         Otherwise, the index where the value is located.
-  *
-  * Description: Prints a value every time it is compared in the array.
-  */
-int exponential_search(int *array, size_t size, int value)
+ * binary_search_index - Searches a value in a sorted arr use binary search.
+ * @array: The array to search in.
+ * @left: The left index of the array.
+ * @right: The right index of the array.
+ * @value: The value to look for.
+ *
+ * Return: The first index of the value in the array, otherwise -1.
+ */
+int binary_search_index(int *array, size_t left, size_t right, int value)
 {
-	size_t i = 0, right;
+	size_t m;
 
-	if (array == NULL)
+	if (!array)
 		return (-1);
-
-	if (array[0] != value)
+	print_array(array, left, right);
+	m = left + ((right - left) / 2);
+	if (left == right)
+		return (*(array + m) == value ? (int)m : -1);
+	if (value < *(array + m))
 	{
-		for (i = 1; i < size && array[i] <= value; i = i * 2)
-			printf("Value checked array[%ld] = [%d]\n", i, array[i]);
+		return (binary_search_index(array, left, m - 1, value));
 	}
+	else if (value == *(array + m))
+	{
+		return ((int)m);
+	}
+	else
+	{
+		return (binary_search_index(array, m + 1, right, value));
+	}
+}
 
-	right = i < size ? i : size - 1;
-	printf("Value found between indexes [%ld] and [%ld]\n", i / 2, right);
-	return (_binary_search(array, i / 2, right, value));
+/**
+ * print_array - Prints the contents of an array.
+ * @array: The source of the array to print.
+ * @left: The left index of the array.
+ * @right: The right index of the array.
+ */
+void print_array(int *array, size_t left, size_t right)
+{
+	size_t i;
+
+	if (array)
+	{
+		printf("Searching in array: ");
+		for (i = left; i < left + (right - left + 1); i++)
+			printf("%d%s", *(array + i), i < left + (right - left) ? ", " : "\n");
+	}
 }

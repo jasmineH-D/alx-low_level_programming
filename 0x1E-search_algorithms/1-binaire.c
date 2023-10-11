@@ -15,44 +15,24 @@
   */
 int binary_search(int *array, size_t size, int value)
 {
-	size_t i;
-	size_t lowerbound = 0;
-	size_t upperbound = size - 1;
-	size_t midpoint = -1;
-	int index = -1;
+	size_t index = 0, j = size - 1, m;
 
-	if (array == NULL)
-		return (-1);
-	while (lowerbound <= upperbound)
+	if (array)
 	{
-		midpoint = lowerbound + (upperbound - lowerbound) / 2;
-		printf("Searching in array: ");
-		for (i = lowerbound; i <= upperbound; i++)
+		while (index <= j)
 		{
-			if (i == upperbound)
-			{
-				printf("%d\n", array[upperbound]);
-				break;
-			}
-			printf("%d, ", array[i]);
-		}
-		if (array[midpoint] == value)
-		{
-			index = midpoint;
-			break;
-		}
-		else
-		{
-			if (array[midpoint] < value)
-			{
-				lowerbound = midpoint + 1;
-			}
+			printf("Searching in array: ");
+			for (m = index; m < j; m++)
+				printf("%d, ", array[m]);
+			printf("%d\n", array[m]);
+			m = (index + j) / 2;
+			if (array[m] < value)
+				index = m + 1;
+			else if (array[m] > value)
+				j = m - 1;
 			else
-			{
-				upperbound = midpoint - 1;
-			}
+				return (m);
 		}
 	}
-	return (index);
-}
+	return (-1);
 }
