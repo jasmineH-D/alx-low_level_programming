@@ -1,18 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "search_algos.h"
 /**
-  * binary_search - searches for a value in an array of integers using
-  * the binary search algorithm
-  * assumes that the array is sorted in asc order
-  * also assumes that value won't appear twice in the array
-  * prints the array being searched every time it changes.
-  * @array: pointer to the first element of the array to search in
-  * @size: number of elements in array
-  * @value: value to search for
-  * Return: return index of value, if value is not present in array or
-  * if array is NULL, returns -1
-  */
+ * binary_search - function that searches for a value in a sorted
+ * array of integers using the Binary search algorithm.
+ * @array : is a pointer to the first element of the array to search in.
+ * @size : the number of elements in array.
+ * @value : the value to search for.
+ * Return: index of value or -1 if not found.
+*/
 int binary_search(int *array, size_t size, int value)
 {
 	size_t index = 0, j = size - 1, m;
